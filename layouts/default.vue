@@ -97,6 +97,11 @@ export default {
           to: '/'
         },
         {
+          icon: 'mdi-apps',
+          title: 'Posts',
+          to: '/'
+        },
+        {
           icon: 'mdi-chart-bubble',
           title: 'Tech-xperts',
           to: '/inspire'
