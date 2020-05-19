@@ -26,6 +26,8 @@
 		</v-navigation-drawer>
 
 		<v-app-bar
+			class="teal accent-4"
+			dark
 			clipped-left
 			fixed
 			app
@@ -92,17 +94,17 @@ export default {
       drawer: false,
       items: [
         {
-          icon: 'mdi-apps',
-          title: 'TechieHome',
+          icon: 'mdi-home',
+          title: 'Techie Home',
           to: '/'
         },
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-post-outline',
           title: 'Posts',
-          to: '/'
+          to: '/posts'
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-account-hard-hat',
           title: 'Tech-xperts',
           to: '/inspire'
         }
