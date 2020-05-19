@@ -36,7 +36,7 @@
 								<v-card
 									class="align-center"
 									nuxt
-									to="/inspire"
+									:to="'/tech-xperts/' + member.uname"
 								>
 									<v-img
 										:src="member.img"
@@ -84,11 +84,13 @@ export default {
 			trends: [
 				{
 					img: '/BG_1.jpg',
-					title: 'Tech-xpert Arman'
+					title: 'Tech-xpert Arman',
+					url: '/tech-xperts/Arman'
 				},
 				{
-					img: '/BG_2.jpg',
-					title: 'Tech-xpert Joseph'
+					img: '/BG_1.jpg',
+					title: 'Tech-xpert Joseph',
+					url: '/tech-xperts/Joseph'
 				},
 				{
 					img: '/BG_3.jpg',
@@ -101,12 +103,14 @@ export default {
 			],
 			team: [
 				{
-					img: '/BG_1.jpg',
+					uname: 'Joseph',
+					img: '/joseph_headshot.jpg',
 					name: 'Joseph Legere.',
 					credentials: 'BS IT FEU Makati, MS Student QU.',
 					expertise: 'Full Stack Development, Cloud.'
 				},
 				{
+					uname: 'Arman',
 					img: '/BG_2.jpg',
 					name: 'Arman Satuito.',
 					credentials: 'BS Elect Eng. U of PHS Las Pinas.',

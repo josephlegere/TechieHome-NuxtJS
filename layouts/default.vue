@@ -106,7 +106,7 @@ export default {
         {
           icon: 'mdi-account-hard-hat',
           title: 'Tech-xperts',
-          to: '/inspire'
+          to: '/tech-xperts'
         }
       ],
       right: true,
