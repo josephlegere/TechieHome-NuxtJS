@@ -1,6 +1,6 @@
 <template>
     <div class="TechieHomeLogo">
-        <img src="~/assets/images/Logo.png" alt="TechieHome">
+        <img src="/Logo.png" alt="TechieHome">
     </div>
 </template>
 

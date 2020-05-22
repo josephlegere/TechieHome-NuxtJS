@@ -1,7 +1,7 @@
 <template>
-	<v-layout>
-		<v-flex class="text-center">
+	<div>
+		<v-container>
 			<h3>Tech-xperts</h3>
-		</v-flex>
-	</v-layout>
+		</v-container>
+	</div>
 </template>
