@@ -12,6 +12,8 @@
                         <v-card
                             class="d-flex flex-column align-center"
                             height="500"
+                            nuxt
+                            to="/posts/1"
                         >
                             <v-img
                                 class="align-end"

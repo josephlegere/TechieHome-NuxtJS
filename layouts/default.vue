@@ -54,25 +54,18 @@
 
 			<v-btn
 				icon
-				@click="bagsize++"
-			>
-				<v-icon>mdi-plus</v-icon>
-			</v-btn>
-			<v-btn
-				icon
-				@click="bagsize = 0"
+				@click="bag = []"
 			>
 				<v-icon>mdi-close</v-icon>
 			</v-btn>
-
 			<v-btn
 				icon
 				@click.stop="rightDrawer = !rightDrawer"
 			>
 				<v-badge
-					:content="bagsize"
-					:value="bagsize"
-					color="green"
+					:content="bag.length"
+					:value="bag.length"
+					color="grey darken-4 font-weight-black"
 					overlap
 				>
 					<v-icon>mdi-shopping-outline</v-icon>
@@ -114,12 +107,11 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue';
 export default {
 	data () {
 		return {
 			drawer: false,
-			bagsize: 0,
+			bag: [],
 			items: [
 				{
 					icon: 'mdi-home',
@@ -132,6 +124,11 @@ export default {
 					to: '/posts'
 				},
 				{
+					icon: 'mdi-devices',
+					title: 'Shop',
+					to: '/shop'
+				},
+				{
 					icon: 'mdi-account-hard-hat',
 					title: 'Tech-xperts',
 					to: '/tech-xperts'
@@ -139,11 +136,13 @@ export default {
 			],
 			right: true,
 			rightDrawer: false,
-			title: 'TechieHome'
+			title: 'TechieHome',
 		}
 	},
-	components: {
-		Logo
+	created() {
+		this.$nuxt.$on('add-to-cart', productItem => {
+			this.bag.push(productItem);
+		});
 	}
 }
 </script>

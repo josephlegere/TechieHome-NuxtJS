@@ -1,7 +1,7 @@
 <template>
     <div>
 		<v-container>
-			<h3>Posts</h3>
+			<h3>Shop</h3>
 		</v-container>
 	</div>
 </template>

@@ -12,6 +12,8 @@
                         <v-card
                             class="d-flex align-center"
                             height="110"
+                            nuxt
+                            to="/shop/1"
                         >
                             <v-img
                                 class="align-end white--text"
