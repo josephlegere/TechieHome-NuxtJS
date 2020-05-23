@@ -1,58 +1,63 @@
 <template>
-	<v-layout
+	<v-row
+		no-gutters=""
 		column
 		justify-center
 		align-center
 	>
-		<v-flex
+		<v-col
 			xs12
 			sm8
 			md6
 		>
-			<div class="text-center">
-				<logo />
-			</div>
+			<v-sheet
+				class="mx-auto"
+				max-width="1200">
+				<div class="text-center">
+					<logo />
+				</div>
 
-			<h1 class="text-center">Techie Home</h1>
-			<h3 class="text-center"><i>"The Home for Home Automation"</i></h3>
-			
-			<site-highlights :items="highlights" />
-			<site-trends :items="trends" />
+				<h1 class="text-center">Techie Home</h1>
+				<h3 class="text-center"><i>"The Home for Home Automation"</i></h3>
+				
+				<site-highlights :items="highlights" />
+				<site-trends :items="trends" />
 
-        	<v-container>
-				<v-row>
-					<v-col cols="12" md="9">
-						<landing-posts :recents="posts" />
-					</v-col>
-					<v-col cols="12" md="3">
-						<h3 class="text-center">The Team</h3>
-						<v-row>
+				<v-container>
+					<v-row>
+						<v-col cols="12" md="9">
+							<landing-posts :recents="posts" />
+						</v-col>
+						<v-col cols="12" md="3">
+							<h3 class="text-center">The Team</h3>
+							<v-row>
 
-							<v-col
-								cols="12"
-								v-for="(member, i) in team"
-								:key="i"
-							>
-								<v-card
-									class="align-center"
-									nuxt
-									:to="'/tech-xperts/' + member.uname"
+								<v-col
+									cols="12"
+									v-for="(member, i) in team"
+									:key="i"
 								>
-									<v-img
-										:src="member.img"
-									/>
-									<v-card-text>
-										{{member.name}} {{member.credentials}} {{member.expertise}}
-									</v-card-text>
-								</v-card>
-							</v-col>
+									<v-card
+										class="align-center"
+										nuxt
+										:to="'/tech-xperts/' + member.uname"
+									>
+										<v-img
+											:src="member.img"
+										/>
+										<v-card-text>
+											{{member.name}} {{member.credentials}} {{member.expertise}}
+										</v-card-text>
+									</v-card>
+								</v-col>
 
-						</v-row>
-					</v-col>
-				</v-row>
-        	</v-container>
-		</v-flex>
-	</v-layout>
+							</v-row>
+						</v-col>
+					</v-row>
+				</v-container>
+			</v-sheet>
+		</v-col>
+	</v-row>
 </template>
 
 <script>
