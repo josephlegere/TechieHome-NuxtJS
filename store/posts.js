@@ -21,6 +21,6 @@ export const actions = {
 }
 
 export const mutations = {
-    setList: (state, posts) => (state.list = posts),
+    setList: (state, posts) => ( state.list = posts ),
     setPost(state, post) { state.post = post }
 }

@@ -59,7 +59,7 @@
         <v-sheet
             class="mx-auto text-justify"
             max-width="800">
-            <span v-html="post.content"></span>
+            <span v-html="compiledMarkdown"></span>
         </v-sheet>
 
         <v-sheet
@@ -126,13 +126,17 @@
 
 <script>
 import { mapState } from 'vuex';
+import marked from 'marked';
 
 export default {
 	name: 'Post',
 	computed: {
 		...mapState({
 			post: state => state.posts.post
-		})
+        }),
+        compiledMarkdown: function() {
+            return marked(this.post.content, { sanitize: true });
+        }
 	},
 	async fetch({store, params}) {
 		await store.dispatch('posts/show', params.id);
