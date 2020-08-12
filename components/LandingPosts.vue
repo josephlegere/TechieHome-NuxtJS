@@ -11,10 +11,12 @@
             >
                 <v-card
                     class="d-flex flex-column align-center"
+                    nuxt
+                    :to="'/posts/' + post.id"
                 >
                     <v-img
                         class="align-end white--text"
-                        :src="post.img"
+                        :src="cmsURL + post.display_image.formats.small.url"
                     >
                         <v-card-title class="headline">{{post.title}}</v-card-title>
                     </v-img>
@@ -34,6 +36,11 @@ export default {
         recents: {
             type: Array,
             required: true
+        }
+    },
+    data() {
+        return {
+            cmsURL: process.env.cmsURL
         }
     }
 }

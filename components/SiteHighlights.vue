@@ -13,15 +13,15 @@
                             class="d-flex flex-column align-center"
                             height="500"
                             nuxt
-                            to="/posts/1"
+                            :to="'/posts/' + item.post.id"
                         >
                             <v-img
                                 class="align-end"
-                                :src="item.img"
+                                :src="cmsURL + item.post.display_image.formats.small.url"
                             />
-                            <v-card-title class="headline">{{item.title}}</v-card-title>
+                            <v-card-title class="headline">{{item.post.title}}</v-card-title>
                             <v-card-text>
-                                {{item.summary}}
+                                {{item.post.summary}}
                             </v-card-text>
                         </v-card>
                     </v-item>
@@ -35,7 +35,8 @@
 export default {
     data() {
         return {
-            cols: 12
+            cols: 12,
+            cmsURL: process.env.cmsURL
         }
     },
     props: {

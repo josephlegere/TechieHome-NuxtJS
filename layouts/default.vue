@@ -146,3 +146,10 @@ export default {
 	}
 }
 </script>
+
+<style>
+    .markdown span * {
+        position:               relative;
+        width:                  100%;
+    }
+</style>

@@ -26,7 +26,7 @@
 				<v-container>
 					<v-row>
 						<v-col cols="12" md="9">
-							<landing-posts :recents="posts" />
+							<landing-posts :recents="sortPosts" />
 						</v-col>
 						<v-col cols="12" md="3">
 							<h3 class="text-center">The Team</h3>
@@ -61,31 +61,35 @@
 </template>
 
 <script>
+import _ from "lodash";
+
 import Logo from '~/components/Logo.vue';
 import SiteHighlights from '~/components/SiteHighlights';
 import SiteTrends from '~/components/SiteTrends';
 import LandingPosts from '~/components/LandingPosts';
 
+import { mapState } from 'vuex';
+
 export default {
 	data() {
 		return {
-			highlights: [
-				{
-					img: '/BG_1.jpg',
-					title: 'Title 1',
-					summary: 'I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.'
-				},
-				{
-					img: '/BG_2.jpg',
-					title: 'Title 2',
-					summary: 'I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.'
-				},
-				{
-					img: '/BG_3.jpg',
-					title: 'Title 3',
-					summary: 'I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.'
-				}
-			],
+			// highlights: [
+			// 	{
+			// 		img: '/BG_1.jpg',
+			// 		title: 'Title 1',
+			// 		summary: 'I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.'
+			// 	},
+			// 	{
+			// 		img: '/BG_2.jpg',
+			// 		title: 'Title 2',
+			// 		summary: 'I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.'
+			// 	},
+			// 	{
+			// 		img: '/BG_3.jpg',
+			// 		title: 'Title 3',
+			// 		summary: 'I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.'
+			// 	}
+			// ],
 			trends: [
 				{
 					img: '/BG_1.jpg',
@@ -121,25 +125,37 @@ export default {
 					credentials: 'BS Elect Eng. U of PHS Las Pinas.',
 					expertise: 'Home Automation.'
 				}
-			],
-			posts: [
-				{
-					img: '/BG_1.jpg',
-					title: 'Title 1',
-					summary: 'I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.'
-				},
-				{
-					img: '/BG_2.jpg',
-					title: 'Title 2',
-					summary: 'I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.'
-				},
-				{
-					img: '/BG_3.jpg',
-					title: 'Title 3',
-					summary: 'I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.'
-				}
 			]
 		}
+	},
+	methods: {
+		compare(a, b) {
+			let postA = new Date(a.createdAt);
+			let postB = new Date(b.createdAt);
+
+			let comparison = 0;
+			if (postA.getTime() > postB.getTime()) {
+				comparison = -1;
+			} else if (postA.getTime() < postB.getTime()) {
+				comparison = 1;
+			}
+
+			return comparison;
+		}
+	},
+	computed: {
+		...mapState({
+			posts: state => state.posts.list,
+			highlights: state => state.highlights.list
+		}),
+		sortPosts() {
+			let _posts = _.cloneDeep(this.posts);
+			return _posts.sort(this.compare);
+		}
+	},
+	async asyncData({store}) {
+		await store.dispatch('posts/get');
+		await store.dispatch('highlights/get');
 	},
 	components: {
 		Logo,

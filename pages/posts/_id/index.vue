@@ -57,9 +57,9 @@
         </v-sheet>
 
         <v-sheet
-            class="mx-auto text-justify"
+            class="mx-auto text-justify markdown"
             max-width="800">
-            <span v-html="compiledMarkdown"></span>
+                <span v-html="compiledMarkdown"></span>
         </v-sheet>
 
         <v-sheet
@@ -138,7 +138,7 @@ export default {
             return marked(this.post.content, { sanitize: true });
         }
 	},
-	async fetch({store, params}) {
+	async asyncData({store, params}) {
 		await store.dispatch('posts/show', params.id);
 	}
 }
