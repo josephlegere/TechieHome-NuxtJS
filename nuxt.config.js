@@ -86,6 +86,6 @@ export default {
   */
   env: {
     baseURL: process.env.BASE_URL || 'http://localhost:3000',
-    cmsURL: 'http://localhost:1337'
+    cmsURL: 'https://techiehome-strapi.herokuapp.com'
   }
 }
