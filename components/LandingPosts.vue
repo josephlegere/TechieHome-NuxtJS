@@ -16,7 +16,7 @@
                 >
                     <v-img
                         class="align-end white--text"
-                        :src="cmsURL + post.display_image.formats.small.url"
+                        :src="post.display_image.formats.small.url"
                     >
                         <v-card-title class="headline">{{post.title}}</v-card-title>
                     </v-img>

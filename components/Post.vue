@@ -11,7 +11,7 @@
                 <v-img
                     aspect-ratio="1.7"
                     class="grey darken-4"
-                    :src="cmsURL + thumbnail" />
+                    :src="thumbnail" />
             </v-col>
             <v-col
                 cols="12"
