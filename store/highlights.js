@@ -1,24 +1,14 @@
 export const state = () => ({
-  list: [],
-  highlight: {}
+	list: [],
+	highlight: {}
 });
 
-// export const getters = {
-//     allHighlights: state => state.highlights
-// }
-
 export const actions = {
-  async get({ commit }) {
-    const response = await this.$axios.get(`${process.env.cmsURL}/highlights`);
-    //console.log(response.data[response.data.length - 1].Posts);
-    commit("setHighlights", response.data[response.data.length - 1]);
-  }
-//   async show({ commit }, id) {
-//     const response = await this.$axios.get(
-//       `${process.env.cmsURL}/highlights/${id}`
-//     );
-//     commit("setHighlight", response.data);
-//   }
+	async get({ commit }) {
+		const response = await this.$axios.get(`${process.env.cmsURL}/highlights`);
+		//console.log(response.data[response.data.length - 1].Posts);
+		commit("setHighlights", response.data[response.data.length - 1]);
+	}
 };
 
 export const mutations = {

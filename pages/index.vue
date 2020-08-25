@@ -13,12 +13,75 @@
 			<v-sheet
 				class="mx-auto"
 				max-width="1200">
-				<div class="text-center">
+
+				<v-carousel
+					cycle
+					height="300"
+					hide-delimiter-background
+					:show-arrows="false"
+				>
+					<v-carousel-item
+						v-for="(banner, i) in banners"
+						:key="i"
+					>
+						<v-sheet
+							v-if="banner.DisplayType === 'TextSlogan'"
+							:color="banner.BackgroundColor"
+							height="100%"
+						>
+							<v-row
+								class="fill-height"
+								align="center"
+								justify="center"
+							>
+								<div class="display-3">{{ banner.Caption }}</div>
+							</v-row>
+						</v-sheet>
+						<v-sheet
+							v-else-if="banner.DisplayType === 'ImageBanner'"
+							height="100%"
+							class="transparent"
+						>
+							<v-row
+								align="center"
+								justify="center"
+							>
+								<v-card
+									light
+									flat
+								>
+									<v-img
+										:src="banner.GraphicImage.url"
+										class="transparent banner-image"
+										position="top"
+										height="300"
+										width="1161"
+									></v-img>
+								</v-card>
+								<div class="display-3">{{ banner.Caption }}</div>
+							</v-row>
+						</v-sheet>
+						<v-sheet
+							v-else
+							height="100%"
+						>
+							<v-row
+								class="fill-height"
+								align="center"
+								justify="center"
+							>
+								<div class="display-3">{{ banner.Caption }}</div>
+							</v-row>
+						</v-sheet>
+					</v-carousel-item>
+				</v-carousel>
+
+				<!-- <div class="text-center">
 					<logo />
 				</div>
 
 				<h1 class="text-center">Techie Home</h1>
-				<h3 class="text-center"><i>"The Home for Home Automation"</i></h3>
+				<h3 class="text-center"><i>"The Home for Home Automation"</i></h3> -->
 				
 				<site-highlights :items="highlights" />
 				<site-trends :items="trends" />
@@ -73,23 +136,6 @@ import { mapState } from 'vuex';
 export default {
 	data() {
 		return {
-			// highlights: [
-			// 	{
-			// 		img: '/BG_1.jpg',
-			// 		title: 'Title 1',
-			// 		summary: 'I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.'
-			// 	},
-			// 	{
-			// 		img: '/BG_2.jpg',
-			// 		title: 'Title 2',
-			// 		summary: 'I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.'
-			// 	},
-			// 	{
-			// 		img: '/BG_3.jpg',
-			// 		title: 'Title 3',
-			// 		summary: 'I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.'
-			// 	}
-			// ],
 			trends: [
 				{
 					img: '/BG_1.jpg',
@@ -146,7 +192,8 @@ export default {
 	computed: {
 		...mapState({
 			posts: state => state.posts.list,
-			highlights: state => state.highlights.list
+			highlights: state => state.highlights.list,
+			banners: state => state.banners.list
 		}),
 		sortPosts() {
 			let _posts = _.cloneDeep(this.posts);
@@ -154,8 +201,9 @@ export default {
 		}
 	},
 	async asyncData({store}) {
-		await store.dispatch('posts/get');
+		await store.dispatch('banners/get');
 		await store.dispatch('highlights/get');
+		await store.dispatch('posts/get');
 	},
 	components: {
 		Logo,
@@ -165,3 +213,9 @@ export default {
 	}
 }
 </script>
+
+<style scoped>
+	.banner-image {
+		background-size:					auto;
+	}
+</style>

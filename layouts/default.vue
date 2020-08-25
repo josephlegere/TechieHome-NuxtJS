@@ -54,12 +54,6 @@
 
 			<v-btn
 				icon
-				@click="bag = []"
-			>
-				<v-icon>mdi-close</v-icon>
-			</v-btn>
-			<v-btn
-				icon
 				@click.stop="rightDrawer = !rightDrawer"
 			>
 				<v-badge
@@ -68,7 +62,7 @@
 					color="grey darken-4 font-weight-black"
 					overlap
 				>
-					<v-icon>mdi-shopping-outline</v-icon>
+					<v-icon>mdi-account-circle-outline</v-icon>
 				</v-badge>
 			</v-btn>
 		</v-app-bar>
@@ -86,14 +80,23 @@
 			fixed
 		>
 			<v-list>
-			<v-list-item @click.native="right = !right">
-				<v-list-item-action>
-				<v-icon light>
-					mdi-repeat
-				</v-icon>
-				</v-list-item-action>
-				<v-list-item-title>Switch drawer (click me)</v-list-item-title>
-			</v-list-item>
+				<v-list-item @click.native="right = !right">
+					<v-list-item-action>
+						<v-icon light>
+							mdi-repeat
+						</v-icon>
+					</v-list-item-action>
+					<v-list-item-title>Switch drawer (click me)</v-list-item-title>
+				</v-list-item>
+				<v-list-item>
+					<v-list-item-action>
+						<v-btn
+							@click="bag = []"
+						>
+							Clear
+						</v-btn>
+					</v-list-item-action>
+				</v-list-item>
 			</v-list>
 		</v-navigation-drawer>
 
@@ -123,11 +126,11 @@ export default {
 					title: 'Posts',
 					to: '/posts'
 				},
-				{
-					icon: 'mdi-devices',
-					title: 'Shop',
-					to: '/shop'
-				},
+				// {
+				// 	icon: 'mdi-devices',
+				// 	title: 'Shop',
+				// 	to: '/shop'
+				// },
 				{
 					icon: 'mdi-account-hard-hat',
 					title: 'Tech-xperts',
