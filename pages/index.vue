@@ -15,14 +15,17 @@
 				max-width="1200">
 
 				<v-carousel
+					light
 					cycle
 					height="300"
 					hide-delimiter-background
+					:hide-delimiters="hideDelimiters"
 					:show-arrows="false"
 				>
 					<v-carousel-item
-						v-for="(banner, i) in banners"
+						v-for="(banner, i) in liveBanners"
 						:key="i"
+						dark
 					>
 						<v-sheet
 							v-if="banner.DisplayType === 'TextSlogan'"
@@ -43,6 +46,7 @@
 							class="transparent"
 						>
 							<v-row
+								class="fill-height"
 								align="center"
 								justify="center"
 							>
@@ -83,7 +87,7 @@
 				<h1 class="text-center">Techie Home</h1>
 				<h3 class="text-center"><i>"The Home for Home Automation"</i></h3> -->
 				
-				<site-highlights :items="highlights" />
+				<site-highlights :items="liveHighlights" />
 				<site-trends :items="trends" />
 
 				<v-container>
@@ -195,9 +199,27 @@ export default {
 			highlights: state => state.highlights.list,
 			banners: state => state.banners.list
 		}),
+		livePosts() {
+			return this.posts.filter(function(live) {
+				return live.LiveSwitch;
+			});
+		},
 		sortPosts() {
-			let _posts = _.cloneDeep(this.posts);
+			let _posts = _.cloneDeep(this.livePosts);
 			return _posts.sort(this.compare);
+		},
+		liveBanners() {
+			return this.banners.filter(function(live) {
+				return live.LiveSwitch;
+			});
+		},
+		liveHighlights() {
+			return this.highlights.filter(function(live) {
+				return live.LiveSwitch && live.post.LiveSwitch;
+			});
+		},
+		hideDelimiters() {
+			return !(this.liveBanners.length > 1);
 		}
 	},
 	async asyncData({store}) {

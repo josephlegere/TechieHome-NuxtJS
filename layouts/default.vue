@@ -80,7 +80,10 @@
 			fixed
 		>
 			<v-list>
-				<v-list-item @click.native="right = !right">
+				<v-list-item>
+					<i>"Nothing to see here. Under construction!"</i>
+				</v-list-item>
+				<!-- <v-list-item @click.native="right = !right">
 					<v-list-item-action>
 						<v-icon light>
 							mdi-repeat
@@ -96,7 +99,7 @@
 							Clear
 						</v-btn>
 					</v-list-item-action>
-				</v-list-item>
+				</v-list-item> -->
 			</v-list>
 		</v-navigation-drawer>
 
