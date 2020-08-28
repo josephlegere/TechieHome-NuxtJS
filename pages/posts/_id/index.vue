@@ -138,8 +138,18 @@ export default {
             return marked(this.post.content, { sanitize: true });
         }
 	},
-	async asyncData({store, params}) {
-		await store.dispatch('posts/show', params.id);
+	async asyncData({store, error, params}) {
+        await store.dispatch('posts/show', params.id)
+            .then(e => {
+                console.log(e)
+                let _post = e;
+                if (!_post.LiveSwitch) {
+                    throw ({ statusCode: 404, message: 'Post not found' });
+                }
+            })
+            .catch(e => {
+                error(e);
+            });
 	}
 }
 </script>

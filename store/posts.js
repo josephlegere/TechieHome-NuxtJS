@@ -15,6 +15,7 @@ export const actions = {
     async show({ commit }, id) {
         const response = await this.$axios.get(`${process.env.cmsURL}/posts/${id}`);
         commit('setPost', response.data);
+        return response.data;
     }
 }
 
