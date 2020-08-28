@@ -40,8 +40,13 @@ export default {
 		...mapState({
 			posts: state => state.posts.list
 		}),
+		livePosts() {
+			return this.posts.filter(function(live) {
+				return live.LiveSwitch;
+			});
+		},
 		sortPosts() {
-			let _posts = _.cloneDeep(this.posts);
+			let _posts = _.cloneDeep(this.livePosts);
 			return _posts.sort(this.compare);
 		}
 	},
