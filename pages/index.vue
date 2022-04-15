@@ -15,6 +15,7 @@
 				max-width="1200">
 
 				<v-carousel
+					v-if="banners.LiveSwitch"
 					light
 					cycle
 					height="300"
@@ -196,8 +197,8 @@ export default {
 	computed: {
 		...mapState({
 			posts: state => state.posts.list,
-			highlights: state => state.highlights.list,
-			banners: state => state.banners.list
+			highlights: state => state.highlights.highlightObj,
+			banners: state => state.banners.bannerObj
 		}),
 		livePosts() {
 			return this.posts.filter(function(live) {
@@ -208,13 +209,29 @@ export default {
 			let _posts = _.cloneDeep(this.livePosts);
 			return _posts.sort(this.compare);
 		},
+		setBanners() {
+			let _switch = this.banners.LiveSwitch;
+			if (_switch) {
+				return this.banners.BannerItems
+			}
+			else
+				return [];
+		},
 		liveBanners() {
-			return this.banners.filter(function(live) {
+			return this.setBanners.filter(function(live) {
 				return live.LiveSwitch;
 			});
 		},
+		setHighlights() {
+			let _switch = this.highlights.LiveSwitch;
+			if (_switch) {
+				return this.highlights.Posts
+			}
+			else
+				return [];
+		},
 		liveHighlights() {
-			return this.highlights.filter(function(live) {
+			return this.setHighlights.filter(function(live) {
 				return live.LiveSwitch && live.post.LiveSwitch;
 			});
 		},

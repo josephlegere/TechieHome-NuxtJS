@@ -1,6 +1,6 @@
 export const state = () => ({
 	list: [],
-	highlight: {}
+	highlightObj: {}
 });
 
 export const actions = {
@@ -15,6 +15,6 @@ export const mutations = {
     //setList: (state, highlights) => (state.list = highlights),
     setHighlights(state, highlights) {
         state.list = highlights.Posts;
-        state.highlight = highlights;
+		state.highlightObj = highlights;
     }
 };

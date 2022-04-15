@@ -1,6 +1,6 @@
 export const state = () => ({
     list: [],
-    banner: {}
+    bannerObj: {}
 });
 
 export const actions = {
@@ -15,6 +15,6 @@ export const mutations = {
     //setList: (state, banners) => (state.list = banners),
     setBanners(state, banners) {
         state.list = banners.BannerItems;
-        state.banner = banners;
+        state.bannerObj = banners;
     }
 };

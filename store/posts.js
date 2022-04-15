@@ -1,6 +1,6 @@
 export const state = () => ({
     list: [],
-    post: {}
+    postObj: {}
 })
 
 // export const getters = {
@@ -21,5 +21,5 @@ export const actions = {
 
 export const mutations = {
     setList: (state, posts) => ( state.list = posts ),
-    setPost(state, post) { state.post = post }
+    setPost(state, post) { state.postObj = post }
 }
